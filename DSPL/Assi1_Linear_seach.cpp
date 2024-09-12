@@ -1,5 +1,3 @@
-
-
 //Linear Search
 
 #include <iostream>
@@ -7,8 +5,8 @@ using namespace std;
 class linear
 {
     public:
-    int count=0,i,j,a[10],temp=0,flag=0,size,key,press,pos[10];
-
+    int i,j,a[10],pos,pos1,count=0,temp=0,flag=0,size,key,press;
+    
     void sort()
     {
         cout<<"Enter Your Size of Array:  ";
@@ -30,45 +28,70 @@ class linear
                 }
             }
         }
-        cout<<"\nSorted Element are : ";
+        cout<<"\n\t************************************************\n";
+        cout<<"\t\tSORTED ELEMENTS : ";
+       
         for(i=0;i<size;i++)
         {
             cout<<""<<a[i]<<"\t";
         }
-    }
-
+         cout<<"\n\t************************************************\n";
+        }
+    
     void search()
     {
-        do{
-        cout<<"\n\nEnter Key Element you want search:  ";
+      do{  
+        cout<<"\nEnter Key Element you want search:  ";
         cin>>key;
         for(i=0;i<size;i++)
         {
             if(key==a[i])
             {
-                pos=i; //pos[count-1]
-                flag=1;
-               count++;
-               
-               continue;
+                pos=i;
+                break;
             }
-
+         
         }
-        if(flag!=1)
+        for(i=0;i<size;i++)
         {
-         cout<<"\n\nElement "<<key<<" is NOT Found " ;   
+            if(key==a[i])
+            {
+                pos1=i;
+                count++;
+                flag=1;
+                continue;
+            }
+        }
+        if(flag==0)
+        {
+           
+            cout<<"\n\t************************************************\n";
+            cout<<"\t______________________RESULT____________________\n";
+            cout<<"\n\t************************************************\n";
+            cout<<"\t\t# Element "<<key<<" is NOT Found " ;  
+             cout<<"\n\t************************************************\n";
         }
         else
         {
-            cout<<"\n\nElement "<<key<<" is Found at "<<i<<" Position\n\n"<<key<<" Element is Occured for "<<count<<" time in Array" ; 
+            cout<<"\n\t************************************************\n";
+            cout<<"\t______________________RESULT____________________\n";
+            cout<<"\n\t************************************************\n";
+            cout<<"\t\t# Element "<<key<<" is FOUND\n";
+            cout<<"\t\t# First Position of Element "<<key<<" is  : "<<pos;
+            cout<<"\n\t\t# Last Position of Element "<<key<<" is : "<<pos1;
+            cout<<"\n\t\t# count of Element "<<key<<" is : "<<count;
+             cout<<"\n\t************************************************\n";
+            
         }
         cout<<"\n\nDo You want to search Again , Press 1 : ";
         cin>>press;
-        }while(press==1);
+    }while(press==1);
+        
     }
 };
 int main()
-{
+{ 
+    int press;
    linear p1;
    p1.sort();
    p1.search();
