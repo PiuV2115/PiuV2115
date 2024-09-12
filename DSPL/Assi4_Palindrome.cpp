@@ -1,62 +1,69 @@
 #include<iostream>
 #include<cstring>
 #include<cctype>
+#define max 50
 using namespace std;
+
 class palindrome
 {
   public:
-  char stack[50],tempstr[50];
+  struct structure
+  {
+  char stack[max];
   int top=-1;
+  }st;
+  
+  int isfull()
+  {
+    if(st.top>=max-1)
+    	return 1;
+    else
+    	return 0;
+  }
+  
   void push(char x)
   {
-   if(top==49)
-   {
-   	cout<<"String is Full\n";
-   }
+   if (isFull())
+   	cout<<"STACK IS FULL !!!\n";
    else
    {
-       top++;
-   	stack[top]=x;
+         st.top++;
+   	 st.stack[st.top]=x;
    }
   }
-  char pop()
+  
+  int isEmpty()
   {
-   if(top==-1)
-   {
-   	cout<<"String Is Not Available !!!\n";
-       
-   }
+  	if(st.top==-1)
+  		return 1;
+  	else
+  		return 0;
+  }
+  
+  void pop()
+  {
+   if(isEmpty())
+   	cout<<"STACK IS EMPTY!!!\n";
    else
-   {
-   	return stack[top--];
-   }
-   return 0;
+     	return st.stack[st.--top];
+ 
   }
-  void display()
-  {
-   if(top==-1)
-   {
-   	cout<<"String is Not Available\n";
-   }
-   else{
-   for(int i=0;i<'\0';i++)
-   {
-   	cout<<tempstr[i];
-   }
-   }
-  }
-
+ 
 };
+
+
 int main()
 {
 palindrome obj;
-char str[50];
-int count=0,i;
+char str[max],tempstr[max];
+int count=0,flag=0,i;
 cout<<"Enter string : ";
 cin.getline(str,50);
+
 int size=strlen(str);
-for(int i=0;i<size;i++)
-   {
+
+for(i=0;i<size;i++)
+{
      str[i]=tolower(str[i]);
      if(str[i]==' '||ispunct(str[i]))
      {
@@ -65,33 +72,38 @@ for(int i=0;i<size;i++)
      else
      {
       obj.push(str[i]);
-      obj.tempstr[count]=str[i];
+      tempstr[count]=str[i];
       count++;
      }
-   }
-  obj.tempstr[count]='\0';
-  obj.display();
-  int flag=1;
-   for(i=0;i<count;i++)
-   {
-     if(obj.pop()==obj.tempstr[i])
-     {
-         
-     }
-     else
-     {
-       flag=0;
-       break;
-     }
-   }
-   if(flag==1)
-   {
-       cout<<"String is Palindrome";
-   }
-   else
-   {
-       cout<<"string is not palindrome";
-   }
+}
+
+cout<<"Stack Becomes : "<<obj.st.stack;
+cout<<"\nTemporary Array Becomes ; "<<tempstr;
+
+for(i=0;i<count;i++)
+{
+	if(obj.pop()==temstr[i])
+	{
+	
+	}
+	else
+	{
+	  flag=1;
+	  break;
+	}
+}
+
+if(flag==1)
+{
+ cout<<"String is NOT PALINDROME";
+}
+else
+{
+ cout<<"String is PALINDROME";
+}
 
 return 0;
+
 }
+
+
