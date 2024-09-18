@@ -13,23 +13,12 @@ class palindrome
   int top=-1;
   }st;
   
-  int isfull()
+  int isFull()
   {
     if(st.top>=max-1)
     	return 1;
     else
     	return 0;
-  }
-  
-  void push(char x)
-  {
-   if (isFull())
-   	cout<<"STACK IS FULL !!!\n";
-   else
-   {
-         st.top++;
-   	 st.stack[st.top]=x;
-   }
   }
   
   int isEmpty()
@@ -40,15 +29,29 @@ class palindrome
   		return 0;
   }
   
-  void pop()
+  int pop()
   {
    if(isEmpty())
    	cout<<"STACK IS EMPTY!!!\n";
    else
-     	return st.stack[st.--top];
+{
+     	return st.stack[st.top--];
+}
+return 0;
  
   }
- 
+  void push(char x)
+  {
+      if(isFull())
+      {
+          cout<<"STACK IS FULL!!!\n";
+      }
+      else
+      {
+    st.top++;
+    st.stack[st.top]=x;
+      }
+  }
 };
 
 
@@ -56,7 +59,7 @@ int main()
 {
 palindrome obj;
 char str[max],tempstr[max];
-int count=0,flag=0,i;
+int count=-1,flag=0,i;
 cout<<"Enter string : ";
 cin.getline(str,50);
 
@@ -72,17 +75,18 @@ for(i=0;i<size;i++)
      else
      {
       obj.push(str[i]);
-      tempstr[count]=str[i];
       count++;
+      tempstr[count]=str[i];
      }
 }
 
-cout<<"Stack Becomes : "<<obj.st.stack;
-cout<<"\nTemporary Array Becomes ; "<<tempstr;
 
 for(i=0;i<count;i++)
 {
-	if(obj.pop()==temstr[i])
+    cout<<"Stack Becomes : "<<obj.st.stack;
+cout<<"\nTemporary Array Becomes :  "<<tempstr;
+    break;
+	if(obj.pop()==tempstr[i])
 	{
 	
 	}
@@ -95,15 +99,13 @@ for(i=0;i<count;i++)
 
 if(flag==1)
 {
- cout<<"String is NOT PALINDROME";
+ cout<<"\nString is NOT PALINDROME";
 }
 else
 {
- cout<<"String is PALINDROME";
+ cout<<"\nString is PALINDROME";
 }
 
 return 0;
 
 }
-
-
