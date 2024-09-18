@@ -60,6 +60,7 @@ int main()
 palindrome obj;
 char str[max],tempstr[max];
 int count=-1,flag=0,i;
+do{
 cout<<"Enter string : ";
 cin.getline(str,50);
 
@@ -79,13 +80,15 @@ for(i=0;i<size;i++)
       tempstr[count]=str[i];
      }
 }
-
+tempstr[count+1]='\0';
+obj.st.stack[(obj.st.top)+1]='\0';
+cout<<"Stack Becomes : "<<obj.st.stack;
+cout<<"\nTemporary Array Becomes :  "<<tempstr;
 
 for(i=0;i<count;i++)
 {
-    cout<<"Stack Becomes : "<<obj.st.stack;
-cout<<"\nTemporary Array Becomes :  "<<tempstr;
-    break;
+    
+    
 	if(obj.pop()==tempstr[i])
 	{
 	
@@ -105,7 +108,12 @@ else
 {
  cout<<"\nString is PALINDROME";
 }
-
+int ch;
+cout<<"\n";
+cout<<"Do you Want to continue :\n1.Yes\n2.No\n:";
+cin>>ch;
+}while(ch==1);
 return 0;
 
 }
+                                                                                                                                                    
