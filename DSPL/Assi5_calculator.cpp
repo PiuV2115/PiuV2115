@@ -56,8 +56,10 @@ return 0;
 }
 int main()
 {
-
- char infix[max];
+ infix_to_postfix obj;
+ 
+ char infix[max],postfix[max];
+ int count=0;
  cout<<"Enter Infix Expression : ";
  cin>>infix;
  int len=strlen(infix);
@@ -67,9 +69,22 @@ int main()
   for(char c=a; c<=z ; c++ )
   {
     if(tolower(infix[i]))
+    {
+    	postfix[count]=infix[i];
+    	count++;
+    
+    }
   
   }
+ if(infix[i]==*||+||/||^||-)
+ {
+  if(isEmpty())
+  {
+   push(infix(i))
+  }
+  else if()
  
+ }
  
  }
 return 0;
