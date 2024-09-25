@@ -1,4 +1,6 @@
+![logo](https://github.com/PiuV2115/PiuV2115/blob/main/githubbg.jpg)
 <h1 align="center">Heyy!! ^o^✌️ , I,m Priya Kshirsagar</h1>
+</hr>
 <h3 align="center">I am Passionate Coder From India</h3>
 <br>
 <img align="right" style="display:inline" alt="coding" width="250" src="https://i.makeagif.com/media/5-05-2016/CT5lE_.gif">
