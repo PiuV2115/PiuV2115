@@ -47,8 +47,15 @@ return 0;
       }
   }
 
-// friend bool isoperator(char op);
- //friend int precedance(char y);
+int peek()
+ {
+ while(!isEmpty())
+ {
+  return stack[top];
+ }
+ return -1;
+ }
+
  friend string infixtopostfix(string infix);
  }obj;
  
@@ -74,6 +81,7 @@ return 0;
  	return (x=='+'||x=='-'||x=='*'||x=='/');
  }
  
+ 
  string infixtopostfix(string infix)
  {
    postfix="";
@@ -92,27 +100,26 @@ return 0;
    	}
    	else if(c==')')
    	{
-   		while(!obj.isEmpty()&&obj.top=='(')
+   		while(!obj.isEmpty()&&obj.peek()!='(')
    		{
-   			postfix+=obj.top;
-   			obj.pop();
+   			postfix+=obj.pop();
    		}
    		obj.pop();
    	}
    	else if(isoperator(c))
    	{
-   		while(!obj.isEmpty()&&precedance(obj.top)>=precedance(c))
+   		while(!obj.isEmpty()&&precedance(obj.peek())>=precedance(c))
    		{
-   			postfix+=obj.top;
-   			obj.pop();	
+   			postfix+=obj.pop();
+   				
    		}
    			obj.push(c);
    	}
    }
  while(!obj.isEmpty())
  {
- 	postfix+=obj.top;
- 	obj.pop();
+ 	postfix+=obj.pop();
+
  }
  
  		return postfix;
