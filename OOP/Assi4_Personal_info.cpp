@@ -1,53 +1,54 @@
 #include<iostream>
 using namespace std;
-class info
+class base_person
 {
- public:
- static int count;
- string dob,*name,*dl_no,*address;
- int ht,wt,ip_no,tele_no;
- char bgroup;
- info()
- {
-  ht=0;
-  wt=0;
-  ip_no=0;
-  tele_no=0;
-  dob='\0';
-  bgroup=0;
-  name= new string;
-  dl_no=new string;
-  address=new string;
- }	
- info(int x,int y)
- {
- ht=x;
- wt=y;
- }
- ~info()
- {
- delete name;
- delete dl_no;
- delete address;
- }
+public:
+	string name,salary,mobile_no;
+	int age,id;
  void accept()
  {
- cout<<"Enter Your Personal info:\n";
- cout<<"Name,Date of Birth,Driving licence No.,Address,Height,Weigth,Insurance policy No.,Telephone no.,blood group\n";
- cin>>name>>dob>>dl_no>>address>>ht>>wt>>ip_no>>tele_no>>bgroup;
+ cout<<"# Name :";
+ cin>>name;                                      
+ cout<<"# Age:";
+ cin>>age;
+ cout<<"# Mobile No. :";
+ cin>>mobile_no;
+ cout<<"# ID :";
+ cin>>id;
+ cout<<"# Salary :";
+ cin>>salary;
  }
- static void discnt()
- {
- cout<<"\nNo of Enteries : "<<count;
- }
- void del();
- friend void update();
- inline void display()
- {
- cout<<"Here's Personal info\n";
- cout<<"\n"<<name<<"\t"<<dob<<"\t"<<dl_no<<"\t"<<address<<"\t"<<ht<<"\t"<<wt<<"\t"<<ip_no<<"\t"<<tele_no<<"\t"<<bgroup<<"\n";
- 
- }
-
-
-}
+};
+class derived_docter:public person
+{
+public:
+	string speci,exper,quali,room_no;
+	virtual void accept()
+	{
+		cout<<"# Specialization :";
+		cin>>speci;
+		cout<<"# Room No. :";
+		cin>>exper;
+		cout<<"# Qaulification :";
+		cin>>qauli;
+	}
+};
+class derived_nurse:public person
+{
+public:
+	string shift,dept,ward;
+	virtual void accept()
+	{
+		cout<<"# shift :";
+		cin>>shift;
+		cout<<"# Department :";
+		cin>>dept;
+		cout<<"# Ward :";
+		cin>>ward;
+	}
+};
+class derived_reception:public derived_nurse,public derieved_docter
+{
+public:
+	cout<<"Enter your Choice :\n1.Docter \n2.Nurse";
+};
