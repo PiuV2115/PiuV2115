@@ -48,8 +48,7 @@ public:
         {
             cout << "Queue is Empty !!!" << endl;
         }
-        else
-        {
+        
         cout << "Deleted element is : " <<queue[front]<< endl;
         if (front == rear)
         {
@@ -57,9 +56,9 @@ public:
             rear = -1;
         } else 
         {
-            front = front + 1;
+            front ++;
         }
-        }
+        
     }
 
     void delete_rear() 
@@ -69,9 +68,7 @@ public:
             cout << "Cannot delete Elemnt through rear end !!" << endl;
             return;
         }
-        else
-        {
-        cout << "Deleted element is " << queue[rear] << endl;
+       cout << "Deleted element is " << queue[rear] << endl;
         if (front == rear)
         {
             front = -1;
@@ -81,7 +78,6 @@ public:
         {
             rear--;
         }
-        }
     }
 
     void display()
@@ -89,12 +85,26 @@ public:
        cout << "Deque : [ ";
        for( int i = front; i <= rear ; i++)
        {
+          if(front==-1&&rear==-1)
+          {
+          	cout<<" ";
+          }
+          else
+          {
            cout << queue[i] <<"  ";
+           }
         }
        cout << "]\n";
        cout << "Index : [ ";
-       for( int i = front; i <= rear ; i++){
+       for( int i = front; i <= rear ; i++)
+       {
+       	 if(front==-1&&rear==-1)
+          {
+          	cout<<" ";
+          }
+          else{
            cout << i <<"  ";
+           }
         }
         cout << "]";
     }
@@ -104,7 +114,7 @@ int main() {
     Que obj;
     int choice;
     do {
-        cout << "\nDoubly Ended Queue Menu:" << endl;
+        cout << "\n\nDoubly Ended Queue Menu:" << endl;
         cout << "1. Insert_at_Rear()" << endl;
         cout << "2. Insert_at_Front()" << endl;
         cout << "3. Delete_at_Front()" << endl;
@@ -128,17 +138,18 @@ int main() {
         }
         case 3:
         {
-            obj.delete_rear();
+            obj.delete_front();
             obj.display();
             break;
         }
         case 4 : {
-            obj.delete_front();
+            obj.delete_rear();
             obj.display();
             break;
         }
         case 5:
             cout << "Exiting..." << endl;
+            exit(0);
             break;
         default:
             cout << "Invalid choice. Please try again." << endl;
