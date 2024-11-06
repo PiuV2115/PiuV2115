@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-class base_person
+class person
 {
 public:
 	string name,salary,mobile_no;
@@ -19,21 +19,21 @@ public:
  cin>>salary;
  }
 };
-class derived_docter:public person
+class docter:public person
 {
 public:
-	string speci,exper,quali,room_no;
+	string speci,exper,room_no;
 	virtual void accept()
 	{
 		cout<<"# Specialization :";
 		cin>>speci;
-		cout<<"# Room No. :";
+		cout<<"# Experience. :";
 		cin>>exper;
-		cout<<"# Qaulification :";
-		cin>>qauli;
+	    cout<<"# Room No. :";
+	    cin>>room_no;
 	}
 };
-class derived_nurse:public person
+class nurse:public person
 {
 public:
 	string shift,dept,ward;
@@ -47,8 +47,56 @@ public:
 		cin>>ward;
 	}
 };
-class derived_reception:public derived_nurse,public derieved_docter
+class reception:public nurse,public docter
 {
 public:
+ class reception obj;
+    int choice;
+    string tempname,tempid;
 	cout<<"Enter your Choice :\n1.Docter \n2.Nurse";
+	cin>>choice;
+	switch(choice)
+	{
+	    case 1: cout<<"Enter Docter Name and ID :";
+	    cin>>tempname>>tempid;
+	    if(tempname==obj.name&&tempid==obj.id)
+	    {
+	        cout<<"Docter Is Available !!!";
+	        cout<<"\nName\tSpecialization\tRoom no.\n";
+	        cout<<obj.name<<"\t"<<obj.speci<<"\t"<<obj.room_no;
+	    }
+	    break;
+	    
+	    case 2:
+	    cout<<"Enter Nurse Name & ID :";
+	    cin>>tempname>>tempid;
+	    if(tempname==obj.name&&tempid==obj.id)
+	    {
+	        cout<<"Nurse is Available ";
+	        cout<<"\nName\tDepartment\tWard\n";
+	        cout<<obj.name<<"\t"<<obj.dept<<"\t"<<obj.ward;
+	    }
+	    break;
+	    
+	    default:cout<<"Invalid Choice :";
+	}
 };
+int main()
+{
+   int ch;
+   cout<<"1.Insert Docter Info \n2. Fill Nurse Info\n3.Reception\n4.Exit\nEnter your choice :";
+   cin>>ch;
+   switch(ch)
+   {
+       case 1:
+       int size;
+       cout<<"Enter No of Docter's info is to be Fill :";
+       cin>>size;
+       for(int i=0;i<size;i++)
+       {
+        obj.accept();   
+       }
+       
+   }
+    
+}
