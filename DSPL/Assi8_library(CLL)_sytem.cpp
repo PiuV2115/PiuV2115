@@ -156,6 +156,7 @@ class CLL
 {
     node *New;
     node *temp;
+    int flag1=0;
     string title_key;
     double isbn_key;
     New = get_node();
@@ -187,15 +188,19 @@ class CLL
             if (temp->isbn_no == isbn_key)
             {
                 New->next = temp->next; 
-                temp->next = New;      
+                temp->next = New; 
+                flag1=1;
                 break;                  
             }
             temp = temp->next;           
         } while (temp != head);   
     }
     cout << "---------------------------------------------------\n";
+    if(flag1==1)
     cout << "Book details Inserted after book with ISBN: " << isbn_key << "\n";
-    cout << "---------------------------------------------------\n";
+    else
+      cout<<"Book is Not found to insert After ";
+  cout << "---------------------------------------------------\n";
 }
     node *delete_at_first()
     {
@@ -211,7 +216,6 @@ class CLL
             {
                 temp = head;
                 head = NULL;
-                free(temp);
             }
             else
             {
@@ -221,11 +225,12 @@ class CLL
                     head = head->next;
                     temp->next = head;
                 }
-                free(temp);
+               
             }
+           delete temp;
             cout << "Book details at 1st is Deleted\n";
-            cout << "---------------------------------------------------\n";
         }
+       cout << "---------------------------------------------------\n";
         return head;
     }
     void delete_at_last()
@@ -258,8 +263,9 @@ class CLL
                 delete temp;
             }
             cout << "Book details at last is Deleted\n";
-            cout << "---------------------------------------------------\n";
+          
         }
+        cout << "---------------------------------------------------\n";
     }
     void delete_at_pos()
     {
@@ -283,15 +289,19 @@ class CLL
             temp = head;
             cout << "Enter Book title & ISBN no, is to be Deleted :";
             cin >> title_key >> isbn_key;
+          do{
             if (temp->isbn_no != isbn_key)
             {
                 prev = temp;
                 temp = temp->next;
             }
+            else{
             prev = temp->next;
             free(temp);
             cout << "Book " << title_key << " is Deleted\n";
+              break;
         }
+            }while(temp->next!=head)
         cout << "---------------------------------------------------\n";
     }
     void search()
@@ -317,8 +327,11 @@ class CLL
                 {
                     cout << "Book of " << isbn_key << "ISBN no. is Present\n";
                     flag = 1;
+                  break;
                 }
+              else{
                 temp = temp->next;
+              }
             } while (temp != head);
             if (flag == 0)
             {
