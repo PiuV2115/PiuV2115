@@ -6,7 +6,9 @@ class CLL
 public:
 struct node
 {
-  int data;
+  string title,author;
+  double isbn_no;
+  bool status;
    struct node *next;
 };
 private:
@@ -33,19 +35,26 @@ node*create()
   char flag='T';
   temp=head;
   int size;
-  cout<<"\nHow many nodes you want to create :";
+  cout<<"\nHow many Books list you want to create :";
   cin>>size;
    for(int i=0;i<size;i++)
    {
     New=get_node();
     if(New==NULL)
     {
-      cout<<"Memory is Not Allocated to New\n";
+      cout<<"Memory is Not Allocated to New node\n";
     }
     else
     {
-    cout<<"Data fill for "<<i+1<<" Node: ";
-    cin>>New->data;
+    cout<<"Book details for "<<i+1<<" Node \n";
+    cout<<"# Book Title :";
+    cin>>New->title;
+    cout<<"# Book Author :";
+    cin>>New->author;
+    cout<<"# ISBN no. :";
+    cin>>New->isbn_no;
+    cout<<"# Availability (1.True/2.False) :";
+    cin>>status;
     if(flag=='T')
     {
       head=New;
@@ -65,7 +74,7 @@ node*create()
     }
     }
   }
-    cout<<"Circular link list of "<<size<<" nodes is created SUCCESSFULLY !\n";
+    cout<<" list of "<<size<<" Books is created SUCCESSFULLY !\n";
   return head;
 }
 node*Insert_at_first()
@@ -74,8 +83,15 @@ node*Insert_at_first()
   node*temp;
   temp=head;
   New=get_node();
-  cout<<"Enter data fill : ";
-  cin>>New->data;
+    cout<<"Enter Book details\n";
+    cout<<"# Book Title :";
+    cin>>New->title;
+    cout<<"# Book Author :";
+    cin>>New->author;
+    cout<<"# ISBN no. :";
+    cin>>New->isbn_no;
+    cout<<"# Availability (1.True/2.False) :";
+    cin>>status;
   if(head==NULL)
   {
     head=New;
@@ -92,7 +108,7 @@ node*Insert_at_first()
     New->next=head;
     head=New;
   }
-   cout<<"Node is Inserted At Head\n";
+   cout<<"Book details Inserted at First\n";
    return head;
 }
 void Insert_at_last()
@@ -100,8 +116,15 @@ void Insert_at_last()
   node*New;
   node*temp;
   New=get_node();
-  cout<<"Enter data fill : ";
-  cin>>New->data;
+    cout<<"Enter Book details\n";
+    cout<<"# Book Title :";
+    cin>>New->title;
+    cout<<"# Book Author :";
+    cin>>New->author;
+    cout<<"# ISBN no. :";
+    cin>>New->isbn_no;
+    cout<<"# Availability (1.True/2.False) :";
+    cin>>status;
   if(head==NULL)
   {
     head=New;
@@ -117,16 +140,24 @@ void Insert_at_last()
     temp->next=New;
     New->next=head;
   }
-   cout<<"Node is Inserted last\n";
+   cout<<"Book details Inserted at last\n";
 }
 void  Insert_at_pos()
 {
  node*New;
  node*temp;
- int key;
+ string title_key;
+ double isbn_key;
  New=get_node();
- cout<<"Enter data fill :";
- cin>>New->data;
+  cout<<"Enter Book details\n";
+    cout<<"# Book Title :";
+    cin>>New->title;
+    cout<<"# Book Author :";
+    cin>>New->author;
+    cout<<"# ISBN no. :";
+    cin>>New->isbn_no;
+    cout<<"# Availability (1.True/2.False) :";
+    cin>>status;
  if(head==NULL)
  {
    head=New;
@@ -134,11 +165,13 @@ void  Insert_at_pos()
  }
  else
  {
-   cout<<"Enter After which data ,the new data is to be inserted :";
-   cin>>key;
+   cout<<"Enter After which book,the new Book is to be inserted :\n# Title :";
+   cin>>title_key;
+   cout<<"# ISBN no. :";
+   cin>>isbn_key;
    temp=head;
    do{
-   if(temp->data!=key)
+   if(temp->title!=title_key && temp->isbn_no!=isbn_key)
    {
      temp=temp->next;
    }
@@ -149,14 +182,14 @@ void  Insert_at_pos()
    }
    }while(temp!=head);
  }
-  cout<<"Node is Inserted after "<<key<<"\n";
+  cout<<"Book details is Inserted after book "<<title_key<<"\n";
 }
 node*delete_at_first()
 {
   node*temp;
   if(head==NULL)
   {
-    cout<<"Circular Link is Empty\n";
+    cout<<"Book list is Empty\n";
   }
   else
   {
@@ -176,7 +209,7 @@ node*delete_at_first()
     }
     free(temp);
     }
-     cout<<"Node at first is Deleted\n";
+     cout<<"Book details at 1st is Deleted\n";
   }
   return head;
 }
@@ -186,7 +219,7 @@ void delete_at_last()
   node*prev=nullptr;
   if(head==NULL)
   {
-    cout<<"Circular link List is Empty\n";
+  cout<<"Book list is Empty\n";
   }
   else
   {
@@ -207,57 +240,59 @@ void delete_at_last()
        prev->next=head;
        delete temp;
     }
-     cout<<"Last Node is Deleted\n";
+     cout<<"Book details at last is Deleted\n";
   }
 }
 void delete_at_pos()
 {
   node*temp;
   node*prev;
-  int key;
+  double isbn_key;
+  string title_key;
   if(head==NULL)
   {
-    cout<<"Circular Link is Empty \n";
+      cout<<"Book list is Empty\n";
   }
   else
   {
-    cout<<"Enter The key element ,which node is to be Deleted :";
-    cin>>key;
-    if(temp->data!=key)
+    cout<<"Enter Book title & ISBN no, is to be Deleted :";
+    cin>>title_key>>isbn_key;
+    if(temp->title!=title_key&&temp->isbn_no!=isbn_key)
     {
       prev=temp;
       temp=temp->next;
     }
     prev=temp->next;
     free(temp);
-    cout<<"Node of data "<<key<<" is Deleted\n";
+    cout<<"Book "<<title_key<<" is Deleted\n";
   }
 }
 void search()
 {
   node*temp;
-  int key,flag=0;
+  int flag=0;
+  double isbn_key;
   if(head==NULL)
   {
-    cout<<"Circular link list is Empty\n";
+    cout<<"Book list is Empty\n";
   }
   else
   {
-    cout<<"Enter Data Fill You want to search :";
-    cin>>key;
+    cout<<"Enter ISBN no. of Book  You want to search :";
+    cin>>isbn_key;
     temp=head;
     do
     {
-      if(temp->data==key)
+      if(temp->isbn_no==isbn_key)
       {
-        cout<<"Data "<<key<<" is Present\n";
+        cout<<"Book of "<<isbn_key<<"ISBN no. is Present\n";
          flag=1;
       }
       temp=temp->next;
     }while(temp!=head);
     if(flag==0)
     {
-      cout<<"Data "<<key<<" is not Present\n";
+      cout<<"Book of "<<isbn_key<<"ISBN no. Not is Present\n"; 
     }
   }
 }
@@ -265,14 +300,19 @@ void display()
 {
   node*temp;
   temp=head;
-  cout<<"Here's our circular link list \n";
+  int i=0;
+  cout<<"--------------------------\n";
+  cout<<"       Book Library       \n";
+   cout<<"--------------------------\n";
   do{
-    cout<<temp->data;
+    cout<<"\nBook No."<<i+1;
+    cout<<"\n# Title : "<<temp->title;
+    cout<<"\n# Author :"<<temp->author;
+    cout<<"\n# ISBN no. :"<<temp->isbn_no;
+    cout<<"\n# Availability :"<<temp->status;
     temp=temp->next;
-    if(temp!=head)
-    {
-        cout<<"->";
-    }
+    i++;
+     cout<<"--------------------------\n";
     }while(temp!=head);
     cout<<"\n";
 }
@@ -282,20 +322,21 @@ int main()
   CLL obj;
   int choice,size;
   do{
-  cout<<"\n-----CIRCULAR LINK LIST-----\n";
-  cout<<"1.Create CLL\n2.Insertion\n3.Deletion\n4.Searching\n5.Display\nEnter your choice: ";
+  cout<<"\n-------BOOK LIBRARY SYSTEM-------\n";
+  cout<<"1.Create Book List\n2.Book Insertion\n3.Book Deletion\n4.Search a Book\n5.Display Book Info\nEnter your choice: ";
   cin>>choice;
   switch(choice)
   {
     case 1:
       obj.create();
+      cout<<"--------------------------\n";
     break;
    
     case 2:
     int ch,ans;
     do{
-    cout<<"\n----INSERTION----";
-    cout<<"\n1.Insert at First\n2.Insert at last\n3.Insert in between\nEnter choice :";
+    cout<<"\n---------BOOK INSERTION---------";
+    cout<<"\n1.Insert Book at First\n2.Insert Book at last\n3.Insert Book in between\nEnter choice :";
     cin>>ch;
     switch(ch)
     {
@@ -307,16 +348,17 @@ int main()
       break;
       default:cout<<"\nInvalid Choice \n";
     }
-    cout<<"\nDo you want to continue\t1=Yes\t2=No\nYour choice :";
+    cout<<"\nDo you want to continue Insertion\t1=Yes\t2=No\nYour choice :";
     cin>>ans;
     }while(ans==1);
+    cout<<"--------------------------\n";
     break;
    
     case 3:
     int ans1,ch1;
     do{
-    cout<<"\n----DELETION----";
-    cout<<"\n1.Delete at First\n2.Delete at last\n3.Delete in between\nEnter choice :";
+    cout<<"\n---------BOOK DELETION--------";
+    cout<<"\n1.Delete Book at First\n2.Delete Book at last\n3.Delete Book in between\nEnter choice :";
     cin>>ch1;
     switch(ch1)
     {
