@@ -1,15 +1,19 @@
 #include <iostream>
 using namespace std;
-class CLL
-{
-public:
 struct node
 {
   int data;
-  node *next;
-}st;
- node*head;
-head=NULL;
+   struct node *next;
+};
+class CLL
+{
+private:
+node *head;
+public:
+CLL()
+{
+    head=NULL;
+}
 node*get_node()
 {
   node*temp;
@@ -18,21 +22,23 @@ node*get_node()
 }
 node*create()
 {
-  node*temp,*New;
-  node*get_node();
-  char flag;
-  char ans='y';
+  node*temp;
+  node*New;
+  char flag='T';
   temp=head;
-  flag='T';
-   New=get_node();
-  do{
+  int size;
+  cout<<"\nHow Many Nodes You want to create :";
+  cin>>size;
+   for(int i=0;i<size;i++)
+   {
+    New=get_node();
     if(New==NULL)
     {
       cout<<"Memory is Not Allocated to New";
     }
     cout<<"Enter Data : ";
     cin>>New->data;
-    if(flag==1)
+    if(flag=='T')
     {
       head=New;
       New->next=head;
@@ -49,13 +55,13 @@ node*create()
       temp->next=New;
       New->next=head;
     }
-    cout<<"do you want to continue \n(y/n)\nEnter Choice:";
-    cin>>ans;
-  }while(ans=='y');
+  }
+  return head;
 }
 node*Insert_at_first()
 {
-  node *New,*temp;
+  node*New;
+  node*temp;
   temp=head;
   New=get_node();
   cout<<"Enter data fill : ";
@@ -71,14 +77,14 @@ node*Insert_at_first()
     New->next=temp;
     head=New;
   }
-  cout<<"Node is Inserted At Head\n";
-  return head;
+return head;
 }
-node*Insert_at_last()
+void Insert_at_last()
 {
-  node *New,*temp;
+  node*New;
+  node*temp;
   New=get_node();
-  cout<"Enter data fill : ";
+  cout<<"Enter data fill : ";
   cin>>New->data;
   if(head==NULL)
   {
@@ -95,11 +101,11 @@ node*Insert_at_last()
     temp->next=New;
     New->next=head;
   }
-    cout<<"Node is Inserted";
 }
-node*Insert_at_pos()
+void  Insert_at_pos()
 {
- node *New,*temp;
+ node*New;
+ node*temp;
  int key;
  New=get_node();
  cout<<"Enter data fill";
@@ -121,12 +127,10 @@ node*Insert_at_pos()
    New->next=temp->next;
    temp=New;
  }
- cout<<"Node is inserted after "<<key;
- return head;
 }
 node*delete_at_first()
 {
-  node *temp;
+  node*temp;
   if(head==NULL)
   {
     cout<<"Circular Link is Empty\n";
@@ -153,9 +157,10 @@ node*delete_at_first()
   }
   return head;
 }
-node*delete_at_last()
+void delete_at_last()
 {
-  node*temp,*prev;
+  node*temp;
+  node*prev;
   int key;
   if(head==NULL)
   {
@@ -182,12 +187,11 @@ node*delete_at_last()
     }
      cout<<"Last Node is Deleted\n";
   }
-  return head;
- 
 }
-node*delete_at_pos()
+void delete_at_pos()
 {
-  node *temp,*prev;
+  node*temp;
+  node*prev;
   int key;
   cout<<"Enter The key element ,which node is to be Deleted :";
   cin>>key;
@@ -204,12 +208,12 @@ node*delete_at_pos()
     }
     prev=temp->next;
     free(temp);
+    cout<<"Node is Deleted at Position";
   }
-  return head;
 }
-node*search()
+void search()
 {
-  node *temp;
+  node*temp;
   int key,flag=0;
   if(head==NULL)
   {
@@ -234,11 +238,10 @@ node*search()
       cout<<"Data is not Present";
     }
   }
-  return head;
 }
 void display()
 {
-  node *temp;
+  node*temp;
   temp=head;
   do{
     cout<<"Here's our circular link list ";
@@ -258,12 +261,7 @@ int main()
   switch(choice)
   {
     case 1:
-    cout<<"How many nodes CLL you want to create : ";
-    cin>>size;
-    for(int i=0;i<size;i++)
-    {
       obj.create();
-    }
     cout<<"Circular link list of "<<size<<" nodes is created SUCCESSFULLY !\n";
     break;
    
@@ -275,10 +273,13 @@ int main()
     switch(ch)
     {
       case 1: obj.Insert_at_first();
+      cout<<"Node is Inserted At Head\n";
       break;
       case 2: obj.Insert_at_last();
+      cout<<"Node is Inserted last";
       break;
       case 3: obj.Insert_at_pos();
+      cout<<"Node is inserted";
       break;
       default:cout<<"\nInvalid Choice \n";
     }
