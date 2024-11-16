@@ -21,7 +21,7 @@ node*get_node()
   node*temp=new node();
   if(temp==nullptr)
   {
-      cout<<"Momory Allocation failed!";
+      cout<<"Momory Allocation failed!\n";
   }
   temp->next=NULL;
   return temp;
@@ -40,7 +40,7 @@ node*create()
     New=get_node();
     if(New==NULL)
     {
-      cout<<"Memory is Not Allocated to New";
+      cout<<"Memory is Not Allocated to New\n";
     }
     else
     {
@@ -117,7 +117,7 @@ void Insert_at_last()
     temp->next=New;
     New->next=head;
   }
-   cout<<"Node is Inserted last";
+   cout<<"Node is Inserted last\n";
 }
 void  Insert_at_pos()
 {
@@ -149,7 +149,7 @@ void  Insert_at_pos()
    }
    }while(temp!=head);
  }
-  cout<<"Node is Inserted after "<<key;
+  cout<<"Node is Inserted after "<<key<<"\n";
 }
 node*delete_at_first()
 {
@@ -176,7 +176,7 @@ node*delete_at_first()
     }
     free(temp);
     }
-     cout<<"Node at first is Deleted";
+     cout<<"Node at first is Deleted\n";
   }
   return head;
 }
@@ -184,7 +184,6 @@ void delete_at_last()
 {
   node*temp;
   node*prev=nullptr;
-  int key;
   if(head==NULL)
   {
     cout<<"Circular link List is Empty\n";
@@ -195,7 +194,7 @@ void delete_at_last()
     {
       temp=head;
       head=NULL;
-      free(temp);
+      delete temp;
     }
     else
     {
@@ -206,7 +205,7 @@ void delete_at_last()
         temp=temp->next;
       }
        prev->next=head;
-       free(temp);
+       delete temp;
     }
      cout<<"Last Node is Deleted\n";
   }
@@ -216,14 +215,14 @@ void delete_at_pos()
   node*temp;
   node*prev;
   int key;
-  cout<<"Enter The key element ,which node is to be Deleted :";
-  cin>>key;
   if(head==NULL)
   {
     cout<<"Circular Link is Empty \n";
   }
   else
   {
+    cout<<"Enter The key element ,which node is to be Deleted :";
+    cin>>key;
     if(temp->data!=key)
     {
       prev=temp;
@@ -231,7 +230,7 @@ void delete_at_pos()
     }
     prev=temp->next;
     free(temp);
-    cout<<"Node of data "<<key<<" is Deleted";
+    cout<<"Node of data "<<key<<" is Deleted\n";
   }
 }
 void search()
@@ -240,7 +239,7 @@ void search()
   int key,flag=0;
   if(head==NULL)
   {
-    cout<<"Circular link list is Empty";
+    cout<<"Circular link list is Empty\n";
   }
   else
   {
@@ -251,14 +250,14 @@ void search()
     {
       if(temp->data==key)
       {
-        cout<<"Data Is Present";
+        cout<<"Data "<<key<<" is Present\n";
          flag=1;
       }
       temp=temp->next;
     }while(temp!=head);
     if(flag==0)
     {
-      cout<<"Data is not Present";
+      cout<<"Data "<<key<<" is not Present\n";
     }
   }
 }
@@ -266,7 +265,7 @@ void display()
 {
   node*temp;
   temp=head;
-  cout<<"Here's our circular link list ";
+  cout<<"Here's our circular link list \n";
   do{
     cout<<temp->data;
     temp=temp->next;
