@@ -1,12 +1,14 @@
 #include <iostream>
 using namespace std;
+
+class CLL
+{
+public:
 struct node
 {
   int data;
    struct node *next;
 };
-class CLL
-{
 private:
 node *head;
 public:
@@ -16,7 +18,11 @@ CLL()
 }
 node*get_node()
 {
-  node*temp;
+  node*temp=new node();
+  if(temp==nullptr)
+  {
+      cout<<"Momory Allocation failed!";
+  }
   temp->next=NULL;
   return temp;
 }
@@ -27,7 +33,7 @@ node*create()
   char flag='T';
   temp=head;
   int size;
-  cout<<"\nHow Many Nodes You want to create :";
+  cout<<"\nHow many nodes you want to create :";
   cin>>size;
    for(int i=0;i<size;i++)
    {
@@ -36,7 +42,9 @@ node*create()
     {
       cout<<"Memory is Not Allocated to New";
     }
-    cout<<"Enter Data : ";
+    else
+    {
+    cout<<"Data fill for "<<i+1<<" Node: ";
     cin>>New->data;
     if(flag=='T')
     {
@@ -55,7 +63,9 @@ node*create()
       temp->next=New;
       New->next=head;
     }
+    }
   }
+    cout<<"Circular link list of "<<size<<" nodes is created SUCCESSFULLY !\n";
   return head;
 }
 node*Insert_at_first()
@@ -74,10 +84,16 @@ node*Insert_at_first()
   else
   {
     temp=head;
-    New->next=temp;
+    while(temp->next!=head)
+    {
+        temp=temp->next;
+    }
+    temp->next=New;
+    New->next=head;
     head=New;
   }
-return head;
+   cout<<"Node is Inserted At Head\n";
+   return head;
 }
 void Insert_at_last()
 {
@@ -101,6 +117,7 @@ void Insert_at_last()
     temp->next=New;
     New->next=head;
   }
+   cout<<"Node is Inserted last";
 }
 void  Insert_at_pos()
 {
@@ -108,7 +125,7 @@ void  Insert_at_pos()
  node*temp;
  int key;
  New=get_node();
- cout<<"Enter data fill";
+ cout<<"Enter data fill :";
  cin>>New->data;
  if(head==NULL)
  {
@@ -120,13 +137,19 @@ void  Insert_at_pos()
    cout<<"Enter After which data ,the new data is to be inserted :";
    cin>>key;
    temp=head;
-   while(temp->data!=key)
+   do{
+   if(temp->data!=key)
    {
      temp=temp->next;
    }
+   else
+   {
    New->next=temp->next;
-   temp=New;
+   temp->next=New;
+   }
+   }while(temp!=head);
  }
+  cout<<"Node is Inserted after "<<key;
 }
 node*delete_at_first()
 {
@@ -160,7 +183,7 @@ node*delete_at_first()
 void delete_at_last()
 {
   node*temp;
-  node*prev;
+  node*prev=nullptr;
   int key;
   if(head==NULL)
   {
@@ -208,7 +231,7 @@ void delete_at_pos()
     }
     prev=temp->next;
     free(temp);
-    cout<<"Node is Deleted at Position";
+    cout<<"Node of data "<<key<<" is Deleted";
   }
 }
 void search()
@@ -243,11 +266,16 @@ void display()
 {
   node*temp;
   temp=head;
+  cout<<"Here's our circular link list ";
   do{
-    cout<<"Here's our circular link list ";
-    cout<<temp->data<<"->";
+    cout<<temp->data;
     temp=temp->next;
+    if(temp!=head)
+    {
+        cout<<"->";
+    }
     }while(temp!=head);
+    cout<<"\n";
 }
 };
 int main()
@@ -255,41 +283,43 @@ int main()
   CLL obj;
   int choice,size;
   do{
-  cout<<"-----CIRCULAR LINK LIST-----\n";
+  cout<<"\n-----CIRCULAR LINK LIST-----\n";
   cout<<"1.Create CLL\n2.Insertion\n3.Deletion\n4.Searching\n5.Display\nEnter your choice: ";
   cin>>choice;
   switch(choice)
   {
     case 1:
       obj.create();
-    cout<<"Circular link list of "<<size<<" nodes is created SUCCESSFULLY !\n";
     break;
    
     case 2:
-    int ch;
+    int ch,ans;
+    do{
     cout<<"\n----INSERTION----";
-    cout<<"\n1.Insert at First\n2.Insert at last\n3.Insert in between\nEnter choice";
+    cout<<"\n1.Insert at First\n2.Insert at last\n3.Insert in between\nEnter choice :";
     cin>>ch;
     switch(ch)
     {
       case 1: obj.Insert_at_first();
-      cout<<"Node is Inserted At Head\n";
       break;
       case 2: obj.Insert_at_last();
-      cout<<"Node is Inserted last";
       break;
       case 3: obj.Insert_at_pos();
-      cout<<"Node is inserted";
       break;
       default:cout<<"\nInvalid Choice \n";
     }
+    cout<<"\nDo you want to continue\t1=Yes\t2=No\nYour choice :";
+    cin>>ans;
+    }while(ans==1);
     break;
    
     case 3:
-     cout<<"\n----DELETION----";
-    cout<<"\n1.Delete at First\n2.Delete at last\n3.Delete in between\nEnter choice";
-    cin>>ch;
-    switch(ch)
+    int ans1,ch1;
+    do{
+    cout<<"\n----DELETION----";
+    cout<<"\n1.Delete at First\n2.Delete at last\n3.Delete in between\nEnter choice :";
+    cin>>ch1;
+    switch(ch1)
     {
       case 1: obj.delete_at_first();
       break;
@@ -299,6 +329,9 @@ int main()
       break;
       default:cout<<"\nInvalid Choice \n";
     }
+    cout<<"\nDo you want to continue\t1=Yes\t2=No\nYour choice :";
+    cin>>ans1;
+    }while(ans1==1);
     break;
    
     case 4:
