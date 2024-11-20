@@ -1,13 +1,12 @@
 #include <iostream>
 using namespace std;
-class CLL
+class SLL
 {
   public:
     struct node
     {
-        string title, author;
-        double isbn_no;
-        bool status;
+        string name, phone_no ,donation_obj;
+        double donation_entity,id;
         struct node *next;
     };
 
@@ -15,7 +14,7 @@ class CLL
     node *head;
 
   public:
-    CLL()
+    SLL()
     {
         head = NULL;
     }
@@ -36,7 +35,7 @@ class CLL
         char flag = 'T';
         temp = head;
         int size;
-        cout << "\nHow many Books list you want to create :";
+        cout << "\nHow many Donor's list you want to create :";
         cin >> size;
         for (int i = 0; i < size; i++)
         {
@@ -48,34 +47,38 @@ class CLL
             else
             {
                 cout << "---------------------------------------------------\n";
-                cout << "Book details for " << i + 1 << " Node \n";
-                cout << "# Book Title :";
-                cin >> New->title;
-                cout << "# Book Author :";
-                cin >> New->author;
-                cout << "# ISBN no. :";
-                cin >> New->isbn_no;
-                cout << "# Availability (1 for Yes / 0 for No) :";
-                cin >> New->status;
+                cout << "Donor No. " << i + 1 << "\n";
+                cout << "# Donor Name :";
+                cin >> New->name;
+                cout<<"# Donor id : ";
+                cin>> New->id;
+                cout << "# Donor Phone no. :";
+                getline(cin,New->phone_no);
+                cout << "# Donated object :";
+                cin >> New->donation_obj;
+                cout << "# Donated Entity :";
+                cin >> New->donation_entity;
                 if (flag == 'T')
                 {
                     head = New;
+                    New->next = head;
                     temp = head;
                     flag = 'F';
                 }
                 else
                 {
                     temp = head;
-                    while (temp->next != nullptr)
+                    while (temp->next != head)
                     {
                         temp = temp->next;
                     }
                     temp->next = New;
+                    New->next = head;
                 }
             }
         }
         cout << "---------------------------------------------------\n";
-        cout << " list of " << size << " Books is created SUCCESSFULLY !\n";
+        cout << "list of " << size << " Donor's is created SUCCESSFULLY !\n";
         cout << "---------------------------------------------------\n";
         return head;
     }
@@ -86,27 +89,35 @@ class CLL
         temp = head;
         New = get_node();
         cout << "---------------------------------------------------\n";
-        cout << "Enter Book details\n";
-        cout << "# Book Title :";
-        cin >> New->title;
-        cout << "# Book Author :";
-        cin >> New->author;
-        cout << "# ISBN no. :";
-        cin >> New->isbn_no;
-        cout << "# Availability (1 for Yes / 0 for No) :";
-        cin >> New->status;
+        cout << "Enter Charity Donor's details\n";
+        cout << "# Donor Name :";
+        cin >> New->name;
+        cout<<"# Donor id : ";
+                cin>> New->id;
+        cout << "# Donor Phone no. :";
+        getline(cin,New->phone_no);
+        cout << "# Donated object :";
+        cin >> New->donation_obj;
+        cout << "# Donated Entity :";
+        cin >> New->donation_entity;
         cout << "---------------------------------------------------\n";
         if (head == NULL)
         {
             head = New;
+            New->next = head;
         }
         else
         {
             temp = head;
-            New->next=head;
-            head=New;
+            while (temp->next != head)
+            {
+                temp = temp->next;
+            }
+            temp->next = New;
+            New->next = head;
+            head = New;
         }
-        cout << "Book details Inserted at First\n";
+        cout << "Donor's details Inserted at First\n";
         cout << "---------------------------------------------------\n";
         return head;
     }
@@ -116,19 +127,22 @@ class CLL
         node *temp;
         New = get_node();
         cout << "---------------------------------------------------\n";
-        cout << "Enter Book details\n";
-        cout << "# Book Title :";
-        cin >> New->title;
-        cout << "# Book Author :";
-        cin >> New->author;
-        cout << "# ISBN no. :";
-        cin >> New->isbn_no;
-        cout << "# Availability (1 for Yes / 0 for No) :";
-        cin >> New->status;
+        cout << "Enter Charity Donor's details\n";
+        cout << "# Donor Name :";
+        cin >> New->name;
+        cout<<"# Donor id : ";
+        cin>> New->id;
+        cout << "# Donor Phone no. :";
+        getline(cin,New->phone_no);
+        cout << "# Donated object :";
+        cin >> New->donation_obj;
+        cout << "# Donated Entity :";
+        cin >> New->donation_entity;
         cout << "---------------------------------------------------\n";
         if (head == NULL)
         {
             head = New;
+            New->next = head;
         }
         else
         {
@@ -138,8 +152,9 @@ class CLL
                 temp = temp->next;
             }
             temp->next = New;
+            New->next = head;
         }
-        cout << "Book details Inserted at last\n";
+        cout << "Donor's details Inserted at last\n";
         cout << "---------------------------------------------------\n";
     }
     void Insert_at_pos()
@@ -147,53 +162,52 @@ class CLL
     node *New;
     node *temp;
     int flag1=0;
-    string title_key;
-    double isbn_key;
+    string name_key;
+    double id_key;
     New = get_node();
     cout << "---------------------------------------------------\n";
-    cout << "Enter Book details\n";
-    cout << "# Book Title :";
-    cin >> New->title;
-    cout << "# Book Author :";
-    cin >> New->author;
-    cout << "# ISBN no. :";
-    cin >> New->isbn_no;
-    cout << "# Availability (1 for Yes / 0 for No) :";
-    cin >> New->status;
+   cout << "Enter Charity Donor's details\n";
+        cout << "# Donor Name :";
+        cin >> New->name;
+        cout<<"# Donor id : ";
+        cin>> New->id;
+        cout << "# Donor Phone no. :";
+        getline(cin,New->phone_no);
+        cout << "# Donated object :";
+        cin >> New->donation_obj;
+        cout << "# Donated Entity :";
+        cin >> New->donation_entity;
     cout << "---------------------------------------------------\n";
     if (head == NULL)
     {
         head = New;
+        New->next = head;
     }
     else
     {
-        cout << "Enter After which book, the new Book is to be inserted :\n# Title :";
-        cin >> title_key;
-        cout << "# ISBN no. :";
-        cin >> isbn_key;
+        cout << "Enter After which Donor, the new Donor's info is to be inserted :\n# Name :";
+        cin >> name_key;
+        cout << "# Donor Id :";
+        cin >> id_key;
         temp = head;
         do
         {
-            if (temp->isbn_no == isbn_key)
+            if (temp->id == id_key)
             {
                 New->next = temp->next; 
-                temp->next = New;     
+                temp->next = New; 
                 flag1=1;
                 break;                  
             }
             temp = temp->next;           
-        } while (temp !=nullptr );   
+        } while (temp->next!=nullptr );   
     }
     cout << "---------------------------------------------------\n";
     if(flag1==1)
-    {
-    cout << "Book details Inserted after book with ISBN: " << isbn_key << "\n";
-    }
+    cout << "Donor  details is Inserted after Donor: " << name_key << "\n";
     else
-    {
-    cout<<"No such Book Found tp Insert After\n";
-    }
-    cout << "---------------------------------------------------\n";
+      cout<<"Donor Not found";
+  cout << "---------------------------------------------------\n";
 }
     node *delete_at_first()
     {
@@ -201,7 +215,7 @@ class CLL
         node *temp;
         if (head == NULL)
         {
-            cout << "Book list is Empty\n";
+            cout << "Donor's list is Empty\n";
         }
         else
         {
@@ -215,10 +229,10 @@ class CLL
                 temp = head;
                 head=head->next;
             }
-                delete temp;
-            cout << "Book details at 1st is Deleted\n";
-            cout << "---------------------------------------------------\n";
+           delete temp;
+           cout << "Donor details at 1st is Deleted\n";
         }
+       cout << "---------------------------------------------------\n";
         return head;
     }
     void delete_at_last()
@@ -229,7 +243,7 @@ class CLL
         node *prev = nullptr;
         if (head == NULL)
         {
-            cout << "Book list is Empty\n";
+            cout << "Donor's list is Empty\n";
         }
         else
         {
@@ -247,12 +261,13 @@ class CLL
                     prev = temp;
                     temp = temp->next;
                 }
-                prev->next = NULL;
+                prev->next = nullptr;
                 delete temp;
             }
-            cout << "Book details at last is Deleted\n";
+            cout << "Donor details at last is Deleted\n";
+          
         }
-          cout << "---------------------------------------------------\n";
+        cout << "---------------------------------------------------\n";
     }
     void delete_at_pos()
     {
@@ -260,69 +275,118 @@ class CLL
 
         node *temp;
         node *prev;
-        double isbn_key;
-        string title_key;
+        double id_key;
+        string name_key;
         if (head == NULL)
         {
-            cout << "Book list is Empty\n";
+            cout << "Donor's list is Empty\n";
         }
-        else if (head->next==nullptr)
+        else if (head = head->next)
         {
             temp = head;
             head = nullptr;
-            delete temp;
-            cout<<"Book details is Deleted ";
         }
         else
         {
             temp = head;
-            cout << "Enter Book title & ISBN no, is to be Deleted :";
-            cin >> title_key >> isbn_key;
-            do{
-            if (temp->isbn_no != isbn_key)
+            cout << "Enter Donor Name & Id is to be Deleted :";
+            cin >> name_key >> id_key;
+          do{
+            if (temp->id != id_key)
             {
                 prev = temp;
                 temp = temp->next;
             }
             else{
-            prev = temp->next;
+            prev->next = temp->next;
             free(temp);
-            cout << "Book " << title_key << " is Deleted\n";
-            break;
-            }
-            }while(temp->next!=nullptr);
+            cout << "Donor " << name_key << " is Deleted\n";
+              break;
         }
+            }while(temp->next!=nullptr);
         cout << "---------------------------------------------------\n";
     }
-    void search()
+    }
+    
+    void update()
     {
         cout << "---------------------------------------------------\n";
-
         node *temp;
         int flag = 0;
-        double isbn_key;
+        double id_key;
         if (head == NULL)
         {
-            cout << "Book list is Empty\n";
+            cout << "Donor list is Empty\n";
         }
         else
         {
-            cout << "Enter ISBN no. of Book  You want to search :";
+            cout << "Enter Id of Donor You want to update :";
             cout << "---------------------------------------------------\n";
-            cin >> isbn_key;
+            cin >> id_key;
             temp = head;
             do
             {
-                if (temp->isbn_no == isbn_key)
+                if (temp->id == id_key)
                 {
-                    cout << "Book of " << isbn_key << "ISBN no. is Present\n";
+                    cout << "Donor of " << id_key << " ID is Present\n";
+                    temp=head;
+                        cout << "Update "<<id_key<<" Donor's details\n";
+                        cout << "# Donor Name :";
+                        cin >> temp->name;
+                        cout<<"# Donor id : ";
+                        cin>> temp->id;
+                        cout << "# Donor Phone no. :";
+                        getline(cin,temp->phone_no);
+                        cout << "# Donated object :";
+                        cin >> temp->donation_obj;
+                        cout << "# Donated Entity :";
+                        cin >> temp->donation_entity;
                     flag = 1;
+                  break;
                 }
+              else{
                 temp = temp->next;
-            } while (temp->next!=nullptr);
+              }
+            } while (temp->next!= nullptr);
             if (flag == 0)
             {
-                cout << "Book of " << isbn_key << "ISBN no. Not is Present\n";
+                cout << "Donor of " << id_key << " ID Not is Present\n";
+            }
+        }
+        cout << "---------------------------------------------------\n";  
+    }
+    
+    void search()
+    {
+        cout << "---------------------------------------------------\n";
+        node *temp;
+        int flag = 0;
+        double id_key;
+        if (head == NULL)
+        {
+            cout << "Donor list is Empty\n";
+        }
+        else
+        {
+            cout << "Enter Id of Donor You want to search :";
+            cout << "---------------------------------------------------\n";
+            cin >> id_key;
+            temp = head;
+            do
+            {
+                if (temp->id == id_key)
+                {
+                    cout << "Donor of " << id_key << " ID is Present\n";
+                    flag = 1;
+                  break;
+                }
+              else{
+                temp = temp->next;
+              }
+            } while (temp->next!= nullptr);
+            if (flag == 0)
+            {
+                cout << "Donor of " << id_key << " ID Not is Present\n";
             }
         }
         cout << "---------------------------------------------------\n";
@@ -333,15 +397,16 @@ class CLL
         temp = head;
         int i = 0;
         cout << "---------------------------------------------------\n";
-        cout << "                    Book Library                   \n";
+        cout << "               CHARITY DONOR INFO                  \n";
         cout << "---------------------------------------------------\n";
-        while(temp!=nullptr)
+        while(temp->next!=nullptr)
         {
-            cout << "\nBook No." << i + 1;
-            cout << "\n# Title : " << temp->title;
-            cout << "\n# Author :" << temp->author;
-            cout << "\n# ISBN no. :" << temp->isbn_no;
-            cout << "\n# Availability :" << temp->status;
+            cout << "\nDonor No." << i + 1;
+            cout << "\n# Donor Name : " << temp->name;
+            cout << "\n# Donor ID :" << temp->id;
+            cout << "\n# Donor Phone no. :" << temp->phone_no;
+            cout << "\n# Donated Object :" << temp->donation_obj;
+            cout<<"\n# Donated Entity :"<<temp->donation_entity;
             temp = temp->next;
             i++;
             cout << "\n---------------------------------------------------\n";
@@ -351,12 +416,12 @@ class CLL
 };
 int main()
 {
-    CLL obj;
+    SLL obj;
     int choice, size;
     do
     {
-        cout << "\n----------------BOOK LIBRARY SYSTEM--------------\n";
-        cout << "1.Create Book List\n2.Book Insertion\n3.Book Deletion\n4.Search a Book\n5.Display Book Info\nEnter your choice: ";
+        cout << "\n----------CHARITY DONOR MANAGEMENT SYSTEM-----------\n";
+        cout << "1.Create Donor's List\n2.Donor's Insertion\n3.Donor's Deletion\n4.Update Donor info\n5.Search for Donor\n6.Display Donor Info\nEnter your choice: ";
         cin >> choice;
         switch (choice)
         {
@@ -370,7 +435,7 @@ int main()
             do
             {
                 cout << "\n------------------BOOK INSERTION-------------------";
-                cout << "\n1.Insert Book at First\n2.Insert Book at last\n3.Insert Book in between\nEnter choice :";
+                cout << "\n1.Insert Donor at First\n2.Insert Donor at last\n3.Insert Donor in between\nEnter choice :";
                 cin >> ch;
                 switch (ch)
                 {
@@ -397,7 +462,7 @@ int main()
             do
             {
                 cout << "\n--------------------BOOK DELETION------------------";
-                cout << "\n1.Delete Book at First\n2.Delete Book at last\n3.Delete Book in between\nEnter choice :";
+                cout << "\n1.Delete Donor at First\n2.Delete Donor at last\n3.Delete Donor in between\nEnter choice :";
                 cin >> ch1;
                 switch (ch1)
                 {
@@ -419,16 +484,19 @@ int main()
 
             break;
 
-        case 4:
+        case 4: obj.update();
+        break;
+
+        case 5:
             obj.search();
             break;
 
-        case 5:
+        case 6:
             obj.display();
             break;
 
-        case 6:
-            cout << "Exiting from Book Library System....\n";
+        case 7:
+            cout << "Exiting from Donor Charity system....\n";
             exit(0);
             break;
 
