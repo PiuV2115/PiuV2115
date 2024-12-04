@@ -1,53 +1,55 @@
-#include<iostream>
-using namespce std;
+#include <iostream>
+using namespace std;
 class tele
 {
-public:
-int model_no,size,price;
-void accept()
-{
-int j=1;
-cout<<"--Enter Television Details of "<<j<<" Element--\n";
-cout<<"# Model no. :";
-cin>>model_no;
-try
-{
-  if(model_no>4)
-  throw(model_no);
-}
-catch(int a)
-{
-cout<<"Model no. should be upto 4 digit only ";
-}
-
-cout<<"# Model size (in inches) :";
-cin>>size;
-try
-{
- if(size<12||size>70)
- throw(size);
-}
-catch(int b)
-{
-cout<<"Model size should less than 70 & more than 12";
-}
-
-cout<<"# Model Price :";
-cin>>price;
- try
-{
- if(price<0||price>55000)
- throw(size);
-}
-catch(int c)
-{
-cout<<"Model price should less than 55000 & should be +ve";
-}
-
-j++;
-}
+  public:
+  double model_no,scr_size,prc;
+  void reset()
+  {
+      model_no=0;
+      scr_size=0;
+      prc=0;
+  }
+  friend istream& operator>>(istream& in,tele &tv)
+  {
+  try{
+  cout<<"Enter Model No.:";
+  in>>model_no;
+  if(model_no>9999)
+  {
+      throw error("Exception:Model no. shoould be less that 9999");
+  }
+  cout<<"Enter Screeen size .:";
+  in>>scr_size;
+  if(scr_size<12||scr_size>70)
+  {
+      throw error("Exception : Screen size is in range of 12 and 70");
+  }
+  cout<<"Enter Price :";
+  in>>prc;
+  if(prc>55000)
+  {
+      throw error("Exception : Price is should be less than 55000");
+  }
+  }
+  catch(error& err)
+  {
+      cout<<err;
+      reset();
+      return in;
+  }
+  }
+   friend ostream& operator<<(ostream& out,tele& tv)
+  {
+      out<<"\nModel no.\tPrice\tScreen size\n";
+      out<<model_no<<"\t"<<prc<<"\t"<<scr_size<<"\n";
+      return out;
+  }
 };
 int main()
 {
-
+   tele tv;
+   cin>>tv;
+   cout<<tv;
+   return 0;
 }
