@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+double real1, img1;
 class complex
 {   
     public:
@@ -22,7 +23,7 @@ class complex
     }
     void multdisplay()
     {
-       cout<<"Multiplication : "<<real<<" + "<<img<<"i\n";
+       cout<<"Multiplication : "<<real1<<" + "<<img1<<"i\n";
     }
     void operator +(complex &x);
     friend void operator *(complex &x,complex &y);
@@ -32,11 +33,11 @@ class complex
        real=real+x.real;
        img=img+x.img;
    }
-   void operator *(complex &x, complex &y)
+   void operator *(complex &a, complex &b)
    {
-   
-       x.real=(x.real*y.real)-(x.img*y.img);
-       x.img=(x.real*y.img)+(y.real*x.real);
+  
+       real1=(a.real*b.real)-(a.img*b.img);
+       img1=(a.real*b.img)+(b.real*a.img);
    }
 int main()
 {
@@ -52,7 +53,7 @@ int main()
     complex obj2(r2,i2);
     obj1+obj2;
     complex obj3(r1,i1);
-    obj3+obj2;
+    obj3*obj2;
     obj1.display();
     obj3.multdisplay();
     return 0;
