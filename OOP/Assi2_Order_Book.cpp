@@ -1,3 +1,4 @@
+// Online C++ compiler to run C++ program online
 #include<iostream>
 
 #include<string>
@@ -27,13 +28,13 @@ class library
        static void insert(library obj[10],int size)
 
       {
-          cout<<setfill('-')<<setw(45)<<""<<setfill(" ")<<endl; 
+          cout<<setfill('-')<<setw(45)<<""<<setfill(' ')<<endl; 
           cout<<"\n\t\t_Enter Book Details_\n";
           
           for(int i=0;i<size;i++)
 
           {
-          cout<<setfill('-')<<setw(45)<<""<<setfill(" ")<<endl; 
+          cout<<setfill('-')<<setw(45)<<""<<setfill(' ')<<endl; 
           cout<<"Book no.:"<<i+1<<"\n";
 
           cout<<"> Author : ";
@@ -56,7 +57,7 @@ class library
 
           cin>>obj[i].stock_pos;
           }
-        cout<<setfill('-')<<setw(45)<<""<<setfill(" ")<<endl; 
+        cout<<setfill('-')<<setw(45)<<""<<setfill(' ')<<endl; 
       }
       
       static void Display(library obj[10],int size)
@@ -66,7 +67,7 @@ class library
               <<setw(15)<<left<<"Publisher"
               <<setw(15)<<right<<"Price"
               <<setw(15)<<right<<"Stock Position"<<"\n";
-          cout<<setfill('-')<<setw(65)<<""<<setfill(" ")<<endl;
+          cout<<setfill('-')<<setw(65)<<""<<setfill(' ')<<endl;
           for(int i=0;i<size;i++)
           {
           cout<<setw(15)<<left<<obj[i].title
