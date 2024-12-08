@@ -28,16 +28,16 @@ public:
 
     void insert_front()
     {
-        if (front <= 0) 
+        if (front < 0) 
         {
             cout << "Cannot add Element at front end !!!" << endl;
        
         }
         else
         {
-        front--;
         cout<<"Enter Element : ";
         cin>>queue[front];
+         front--;
         cout<<"\nElement is Inserted through Front end !!"<<endl;
         }
     }
@@ -65,7 +65,7 @@ public:
     {
         if (front==-1&&rear==-1) 
         {
-            cout << "Cannot delete Elemnt through rear end !!" << endl;
+            cout << "Cannot delete Element through rear end !!" << endl;
             return;
         }
        cout << "Deleted element is " << queue[rear] << endl;
