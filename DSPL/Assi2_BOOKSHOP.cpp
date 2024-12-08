@@ -128,8 +128,8 @@ for(i=0;i<size-1;i++)
         l++;
         for(int k=j;k<size;k++)
         {
-         books[j].name=books[j+1].name;
-         books[j].cost=books[j+1].cost;
+         books[k].name=books[k+1].name;
+         books[k].cost=books[k+1].cost;
         }
         size--;
         j--;
